@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'finest-frontend'`, () => {
+  it(`should have as title 'Finest'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('finest-frontend');
+    expect(app.title).toEqual('Finest');
   });
 
-  it('should render title', () => {
+  it('should render nav bar brand inner html as "FiNest Financials"', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('finest-frontend app is running!');
+    expect(compiled.querySelector('a').textContent).toContain('FiNest Financials');
   });
 });

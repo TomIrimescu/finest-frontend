@@ -15,8 +15,7 @@ export class InfoDashboardComponent implements OnInit {
   }
 
   onSubmit() {
-    this.companyInfo = `Here is data for
-    ${this.cSymbol}`;
+    this.companyInfo = `Here is data for ${this.cSymbol}`;
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'app-news-dashboard',
@@ -7,15 +8,27 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NewsDashboardComponent implements OnInit {
   @Input() cSymbol: string;
-  companyNews: string;
+  protected companyNews;
+  protected noData: boolean;
 
-  constructor() { }
+
+  constructor(
+    private readonly dashboardService: DashboardService,
+  ) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.companyNews = `Here is company news for ${this.cSymbol}`;
+  async onSubmit() {
+    // clean state
+    this.companyNews = null;
+    this.noData = false;
+
+    try {
+      this.companyNews = await this.dashboardService.getNews(this.cSymbol);
+    } catch {
+      this.noData = true;
+    }
   }
 
 }
